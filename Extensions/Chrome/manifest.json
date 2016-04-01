@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+  "name": "Reddit TLDR",
+  "description": "This extension adds a TLDR button to all articles found on reddit for optimal laziness",
+  "version": "1.0",
+  "author": "Dragos Rotaru",
+
+  "icons": {
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+
+  "permissions": [
+    "tabs",
+    "http://reddit.com/*",
+    "https://reddit.com/*",
+    "http://*.reddit.com/*",
+    "https://*.reddit.com/*",
+    "https://localhost:5000/*"
+  ],
+
+  "web_accessible_resources": [
+    "jquery-2.2.2.min.js",
+    "TLDR.css",
+    "TLDR.js",
+    "images/*.png"
+  ]
+}
