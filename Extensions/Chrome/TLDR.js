@@ -18,8 +18,8 @@ request.onsuccess = function (e) {
   //Function takes url and summarised article and adds it to the cache
   function createSummary(url, summaryContent) {
     var summary = {
-      summaryContent: summaryContent,
-      date: new Date()
+      summaryContent : summaryContent,
+      date : new Date()
     };
     var request = db.transaction(["Summaries"], "readwrite").objectStore("Summaries").add(summary, url);
 
@@ -75,13 +75,6 @@ request.onsuccess = function (e) {
     return xhr.responseText;
   }
 
-  //Function call to Feedback API
-  function FeedbackAPI() {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", apiURL, true);
-    xhr.send();
-  }
-
   //augment Reddit page with TLDR buttons
   $(document).ready(function () {
     $('.thing.link').each(function () {
@@ -95,7 +88,7 @@ request.onsuccess = function (e) {
     });
   });
 
-  //display summary
+  //show summary
   $(".expando-button.TLDR.collapsed").click(function () {
     $(this).siblings(".expando").attr('style', 'display: block');
   });
