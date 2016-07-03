@@ -1,0 +1,16 @@
+{
+  "name": "didnt-readdit-api",
+  "version": "1.0.0",
+  "description": "api for the didnt-readdit extension",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dragos Rotaru, Adrian Fekete",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "helmet": "^2.1.1",
+    "redis": "^2.6.2"
+  }
+}
