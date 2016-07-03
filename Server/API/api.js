@@ -6,33 +6,13 @@ var express = require('express'),
     helmet = require('helmet'),
     redis = require('redis');
 
-var client = redis.createClient();
+/*var client = redis.createClient();
 var pub = redis.createClient();
 
 client.on('error', function (err) {
   console.log('Redis Error ' + err);
 });
-
-function log(log) {
-    switch(config.logverbosity) {
-    case "production":
-        code block
-        break;
-    case "development":
-        console.log("LOG: " + JSON.stringify(log) )
-        break;
-    case "debug":
-        code block
-        break;
-    case "none":
-        console.log("LOG: " + JSON.stringify(log) )
-        break;
-    default:
-        console.log("ERROR: config.logverbosity is: " + config.logverbosity + " , must be 'production', 'development', 'debug' or 'none' ");
-}
-}
-
-a message can have multiple levels of verbosity
+*/
 
     //Serve Page
     app.set('port', (process.env.PORT || 8080));
@@ -43,11 +23,11 @@ a message can have multiple levels of verbosity
     });
 
     app.get('/api/:reference', function(req, res) {
-        var summary = redis.get(req.params.reference);
+        /*var summary = redis.get(req.params.reference);
         if (summary == null){
             pub.publish("/crawler", url);
-        }
-        res.send(summary);
+        }*/
+        res.send({"summary" : "this is a pretend summary for fun", "reference" : req.params.reference});
     });
 
     http.listen(app.get('port'), function () {

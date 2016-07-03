@@ -1,18 +1,14 @@
 var config = {};
 
 
-//'production' ->
-// 'development' ->
-//'debug' -> in-depth information including 
-//'none' -> no output at all
-config.logverbosity = "development";
+config.loglevel = "development";
 
 config.redis = {};
 config.web = {};
 
-config.redis.uri = process.env.DUOSTACK_DB_REDIS;
-config.redis.host = 'hostname';
+//config.redis.uri = ;
+config.redis.host = 'localhost';
 config.redis.port = 6379;
-config.web.port = process.env.WEB_PORT || 9980;
+config.web.port = process.env.PORT || 8080;
 
 module.exports = config;
