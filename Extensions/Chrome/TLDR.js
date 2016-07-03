@@ -36,11 +36,12 @@ request.onsuccess = function (e) {
 
     request.onsuccess = function (e, content) {
       if (typeof e.target.result == "undefined")
+      {
         summary = SummaryAPI(url);
         createSummary(url, summary);
         return summary;
       }
-      else{
+      else {
         return e.target.result.summaryContent;
       }
     }
