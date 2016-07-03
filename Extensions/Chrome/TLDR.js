@@ -1,6 +1,6 @@
 var version = 2;
 var TLDRversion = chrome.runtime.getManifest().version
-var apiURL = "https://localhost:5000/";
+var apiURL = "https://localhost:5000/api/";
 var request = indexedDB.open("TLDRDBaaa", version);
 
 //Function creates new DB in the case version number differs or DB non-existent
@@ -32,26 +32,22 @@ request.onsuccess = function (e) {
     }
   }
 
-  //Function takes a url key and returns summary for that key
   function readSummary(url) {
-    var content = " Failed to Load :( ... srry m8 "; //failsafe
-    request = db.transaction(["Summaries"], "readonly").objectStore("Summaries").get(url);
 
     request.onsuccess = function (e, content) {
-      if (typeof e.target.result == "undefined") {
-        fetchedSummary = SummaryAPI(url);
-        createSummary(url, fetchedSummary);
-        content = fetchedSummary;
+      if (typeof e.target.result == "undefined")
+        summary = SummaryAPI(url);
+        createSummary(url, summary);
+        return summary;
       }
-
       else{
-      content = e.target.result.summaryContent;
+        return e.target.result.summaryContent;
       }
-      // remove from this scope to readSummary scope then return to iterator
     }
 
     request.onerror = function (e) {}
-    return content;
+
+    request = db.transaction(["Summaries"], "readonly").objectStore("Summaries").get(url);
   }
 
   function deleteSummary(url) {
@@ -68,11 +64,15 @@ request.onsuccess = function (e) {
 
   //Function call to Summary API
   function SummaryAPI(url) {
-    var xhr = new XMLHttpRequest();
-    var requestURL = apiURL + "\"" + url + "\"";
-    xhr.open("GET", requestURL, true);
-    xhr.send();
-    return xhr.responseText;
+    var summary;
+    $.ajax({
+      type: "GET",
+      url: apiURL + url,
+      success: function (result) {
+        return result.summary;
+      },
+      async: false
+    });
   }
 
   //augment Reddit page with TLDR buttons
@@ -80,10 +80,13 @@ request.onsuccess = function (e) {
     $('.thing.link').each(function () {
       if (!$(this).is(".self") && !$(this).find('p.title').next().is(".expando-button")) {
         $(this).find('p.title').after("<div class=\"expando-button TLDR collapsed\"></div>");
-        content = readSummary($(this).attr("data-url"));
-        console.log(content);
-        view = "<div><div>" + content + "</div><div><a>Reddit TLDR V" + TLDRversion + "</a> - <a>" + "Donate Here</a> - <a> Give Feedback <a></div></div>";
-        $(this).find(".expando").html(view);
+        var defaultMsg = "<div><div>Sorry m8, we are being gay</div><div><a>Reddit TLDR V" + TLDRversion + "</a> - <a>" + "Donate Here</a> - <a> Give Feedback <a></div></div>";
+        $(this).find(".expando").html(defaultMsg);
+        readSummary($(this).attr("data-url")).then(function(content) {
+          console.log(content);
+          var view = "<div><div>" + content + "</div><div><a>Reddit TLDR V" + TLDRversion + "</a> - <a>" + "Donate Here</a> - <a> Give Feedback <a></div></div>";
+          $(this).find(".expando").html(view);
+        });
       }
     });
   });
