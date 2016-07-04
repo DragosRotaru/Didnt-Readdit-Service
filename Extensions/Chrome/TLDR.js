@@ -1,6 +1,6 @@
 var version = 2;
 var TLDRversion = chrome.runtime.getManifest().version
-var apiURL = "https://localhost:5000/api/";
+var apiURL = "https://localhost:8080/api/";
 var request = indexedDB.open("TLDRDBaaa", version);
 
 //Function creates new DB in the case version number differs or DB non-existent
@@ -42,13 +42,14 @@ request.onsuccess = function (e) {
         return summary;
       }
       else {
-        return e.target.result.summaryContent;
+        return e.target.result;
       }
     }
 
     request.onerror = function (e) {}
 
     request = db.transaction(["Summaries"], "readonly").objectStore("Summaries").get(url);
+    return {"summary" : "Hahahaha"};
   }
 
   function deleteSummary(url) {
