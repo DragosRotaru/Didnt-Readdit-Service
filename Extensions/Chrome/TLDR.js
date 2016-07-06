@@ -32,24 +32,30 @@ request.onsuccess = function (e) {
     }
   }
 
-  function readSummary(url) {
+  function readSummary(div) {
+    url = div.attr("data-url");
+    request = db.transaction(["Summaries"], "readonly").objectStore("Summaries").get(url);
+    var content;
 
     request.onsuccess = function (e, content) {
       if (typeof e.target.result == "undefined")
       {
-        summary = SummaryAPI(url);
-        createSummary(url, summary);
-        return summary;
+        content = SummaryAPI(url);
+        createSummary(url, content);
       }
       else {
-        return e.target.result;
+        content = e.target.result;
       }
+      console.log(content);
+      var view = "<div><div>" + content + "</div><div><a>Reddit TLDR V" + TLDRversion + "</a> - <a>" + "Donate Here</a> - <a> Give Feedback <a></div></div>";
+      div.find(".expando").html(view);
     }
 
     request.onerror = function (e) {}
 
-    request = db.transaction(["Summaries"], "readonly").objectStore("Summaries").get(url);
-    return {"summary" : "Hahahaha"};
+
+
+
   }
 
   function deleteSummary(url) {
@@ -69,12 +75,16 @@ request.onsuccess = function (e) {
     var summary;
     $.ajax({
       type: "GET",
-      url: apiURL + url,
+      data: {
+        reference: url
+      }
+      url: apiURL,
       success: function (result) {
-        return result.summary;
+        summary = result.summary;
       },
       async: false
     });
+    return summary;
   }
 
   //augment Reddit page with TLDR buttons
@@ -84,11 +94,7 @@ request.onsuccess = function (e) {
         $(this).find('p.title').after("<div class=\"expando-button TLDR collapsed\"></div>");
         var defaultMsg = "<div><div>Sorry m8, we are being gay</div><div><a>Reddit TLDR V" + TLDRversion + "</a> - <a>" + "Donate Here</a> - <a> Give Feedback <a></div></div>";
         $(this).find(".expando").html(defaultMsg);
-        readSummary($(this).attr("data-url")).then(function(content) {
-          console.log(content);
-          var view = "<div><div>" + content + "</div><div><a>Reddit TLDR V" + TLDRversion + "</a> - <a>" + "Donate Here</a> - <a> Give Feedback <a></div></div>";
-          $(this).find(".expando").html(view);
-        });
+        readSummary($(this));
       }
     });
   });

@@ -29,7 +29,7 @@ client.on('error', function (err) {
         }*/
         res.send({
           "summary" : "this is a pretend summary for fun",
-          "reference" : req.params('reference')
+          "reference" : req.param('reference')
         });
     });
 
