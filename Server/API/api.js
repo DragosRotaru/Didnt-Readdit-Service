@@ -28,9 +28,9 @@ client.on('error', function (err) {
             pub.publish("/crawler", url);
         }*/
         res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "X-Requested-With");
         res.send({
-          "summary" : "this is a pretend summary for fun"
+          "summary" : "this is a pretend summary for fun",
+          "reference" : req.param('reference')
         });
     });
 
