@@ -3,7 +3,7 @@
   "name": "Reddit TLDR",
   "description": "This extension adds a TLDR button to all articles found on reddit for optimal laziness",
   "version": "1.0",
-  "author": "Dragos Rotaru",
+  "author": "Dragos Rotaru, Adrian Fekete",
 
   "icons": {
     "48": "images/icon48.png",
@@ -22,7 +22,7 @@
     "https://reddit.com/*",
     "http://*.reddit.com/*",
     "https://*.reddit.com/*",
-    "https://localhost:5000/*"
+    "https://didntreaddit.herokuapp.com/*"
   ],
 
   "web_accessible_resources": [
