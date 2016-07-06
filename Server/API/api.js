@@ -22,7 +22,7 @@ client.on('error', function (err) {
       res.sendfile('public/index.html');
     });
 
-    app.get('/api', function(req, res) {
+    app.get('/api/:reference', function(req, res) {
         /*var summary = redis.get(req.params.reference);
         if (summary == null){
             pub.publish("/crawler", url);
