@@ -22,17 +22,13 @@ client.on('error', function (err) {
       res.sendfile('public/index.html');
     });
 
-    app.get('/api', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
- });
-
     app.get('/api', function(req, res) {
         /*var summary = redis.get(req.params.reference);
         if (summary == null){
             pub.publish("/crawler", url);
         }*/
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
         res.send({
           "summary" : "this is a pretend summary for fun",
           "reference" : req.param('reference')
