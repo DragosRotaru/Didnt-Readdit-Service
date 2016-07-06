@@ -1,6 +1,6 @@
 var version = 2;
 var TLDRversion = chrome.runtime.getManifest().version
-var apiURL = "https://localhost:8080/api/";
+var apiURL = "https://didntreaddit.herokuapp.com/api/";
 var request = indexedDB.open("TLDRDBaaa", version);
 
 //Function creates new DB in the case version number differs or DB non-existent
