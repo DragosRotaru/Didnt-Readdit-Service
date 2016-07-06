@@ -87,7 +87,7 @@ request.onsuccess = function (e) {
     $('.thing.link').each(function () {
       if (!$(this).is(".self") && !$(this).find('p.title').next().is(".expando-button")) {
         $(this).find('p.title').after("<div class=\"expando-button TLDR collapsed\"></div>");
-        var defaultMsg = "<div><div>Sorry m8</div><div><a>Reddit TLDR V" + TLDRversion + "</a> - <a>" + "Donate Here</a> - <a> Give Feedback <a></div></div>";
+        var defaultMsg = "<div><div>Sorry m8... :(</div><div><a>Reddit TLDR V" + TLDRversion + "</a> - <a>" + "Donate Here</a> - <a> Give Feedback <a></div></div>";
         $(this).find(".expando").html(defaultMsg);
         readSummary($(this));
       }
@@ -102,6 +102,7 @@ request.onsuccess = function (e) {
   //hide summary
   $(".expando-button.TLDR.expanded").click(function () {
     $(this).siblings(".expando").attr('style', 'display: none');
+
   });
 
 }
