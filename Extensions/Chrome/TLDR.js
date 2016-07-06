@@ -18,8 +18,8 @@ request.onsuccess = function (e) {
   //Function takes url and summarised article and adds it to the cache
   function createSummary(url, summaryContent) {
     var summary = {
-      summaryContent : summaryContent,
-      date : new Date()
+      summaryContent: summaryContent,
+      date: new Date()
     };
     var request = db.transaction(["Summaries"], "readwrite").objectStore("Summaries").add(summary, url);
 
@@ -38,12 +38,10 @@ request.onsuccess = function (e) {
     var content;
 
     request.onsuccess = function (e, content) {
-      if (typeof e.target.result == "undefined")
-      {
+      if (typeof e.target.result == "undefined") {
         content = SummaryAPI(url);
         createSummary(url, content);
-      }
-      else {
+      } else {
         content = e.target.result;
       }
       console.log(content);
@@ -52,9 +50,6 @@ request.onsuccess = function (e) {
     }
 
     request.onerror = function (e) {}
-
-
-
 
   }
 
@@ -77,7 +72,7 @@ request.onsuccess = function (e) {
       type: "GET",
       data: {
         reference: url
-      }
+      },
       url: apiURL,
       success: function (result) {
         summary = result.summary;
