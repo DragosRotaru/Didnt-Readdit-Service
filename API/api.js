@@ -29,7 +29,7 @@ client.on('error', function (err) {
         }*/
         res.header("Access-Control-Allow-Origin", "*");
         res.send({
-          "summary" : "this is a pretend summary for fun",
+          "summary" : "this is the summary for " + req.param('reference'),
           "reference" : req.param('reference')
         });
     });
