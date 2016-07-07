@@ -1,0 +1,35 @@
+.exp-button.TLDR {
+    background: #ffffff none no-repeat scroll center center;
+    display: block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    float: left;
+    padding: 0px;
+    height: 23px;
+    width: 23px;
+    margin-right: 5px;
+}
+
+.exp-button.TLDR.collapsed {
+    background-image: url('chrome-extension://__MSG_@@extension_id__/images/sprite-RedditTLDR.png') !important;
+    background-position: -29px 0px !important;
+    background-repeat: no-repeat !important;
+}
+
+.exp-button.TLDR.collapsed:hover {
+    background-image: url('chrome-extension://__MSG_@@extension_id__/images/sprite-RedditTLDR.png') !important;
+    background-position: 0px 0px !important;
+    background-repeat: no-repeat !important;
+}
+
+.exp-button.TLDR.expanded {
+    background-image: url('chrome-extension://__MSG_@@extension_id__/images/sprite-RedditTLDR.png') !important;
+    background-position: -88px 0px !important;
+    background-repeat: no-repeat !important;
+}
+
+.exp-button.TLDR.expanded:hover {
+    background-image: url('chrome-extension://__MSG_@@extension_id__/images/sprite-RedditTLDR.png') !important;
+    background-position: -58px 0px !important;
+    background-repeat: no-repeat !important;
+}

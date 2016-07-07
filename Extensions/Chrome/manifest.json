@@ -1,6 +1,6 @@
 {
-  "manifest_version": 2,
-  "name": "Reddit TLDR",
+  "manifest_version": 1.0,
+  "name": "Didnt Readdit",
   "description": "This extension adds a TLDR button to all articles found on reddit for optimal laziness",
   "version": "1.0",
   "author": "Dragos Rotaru, Adrian Fekete",
@@ -27,8 +27,8 @@
 
   "web_accessible_resources": [
     "jquery-2.2.2.min.js",
-    "TLDR.css",
-    "TLDR.js",
+    "didntreaddit.css",
+    "didntreaddit.js",
     "images/*.png"
   ]
 }
