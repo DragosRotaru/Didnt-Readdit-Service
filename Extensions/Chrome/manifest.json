@@ -4,6 +4,9 @@
   "description": "This extension adds a TLDR button to all articles found on reddit for optimal laziness",
   "version": "1.0",
   "author": "Dragos Rotaru, Adrian Fekete",
+  "homepage_url": "https://didntreaddit.com",
+  "default_locale": "en",
+  
 
   "icons": {
     "48": "images/icon48.png",
