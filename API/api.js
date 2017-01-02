@@ -15,7 +15,7 @@ client.on('error', function (err) {
 */
 
     //Serve Page
-    app.set('port', (process.env.PORT || 8080));
+    app.set('port', (config.web.port));
     app.use(express.static(__dirname + '/public'));
     app.use(helmet());
     app.get('/', function (req, res) {

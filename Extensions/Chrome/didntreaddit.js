@@ -13,7 +13,7 @@ var defaultMsg = "<div><div>Sorry m8... :(</div><div><a>Reddit TLDR V" + version
 
 //Creates new DB in the case version number differs or DB non-existent
 request.onupgradeneeded = function (e) {
-  e.target.result.deleteObjectStore("Summaries");
+  //e.target.result.deleteObjectStore("Summaries");
   e.target.result.createObjectStore("Summaries", {
     autoIncrement: false
   });
